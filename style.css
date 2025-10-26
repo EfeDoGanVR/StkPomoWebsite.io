@@ -1,0 +1,401 @@
+:root {
+    /* Temel Renkler - Açık Mod */
+    --color-primary-soft: #e57373;
+    --color-primary-darker: #c62828;
+    --color-accent-sage: #81c784;
+    --color-accent-sage-dark: #4caf50;
+
+    --color-bg-light: #f5f5f5;
+    --color-text-light: #303030;
+    --color-card-bg-light: #ffffff;
+
+    /* Temel Renkler - Karanlık Mod */
+    --color-bg-dark: #263238;
+    --color-text-dark: #cfd8dc;
+    --color-card-bg-dark: #37474f;
+
+    /* Dal/Yaprak Renkleri */
+    --color-stem-brown-light: #a1887f;
+    --color-stem-brown-dark: #6d4c41;
+    --color-leaf-green-light: #66bb6a;
+    --color-leaf-green-dark: #388e3c;
+
+    /* Geçiş ve Font */
+    --transition-speed: 0.4s;
+    --font-family: 'Inter', sans-serif;
+}
+
+/* ------------------------------------ */
+/* 2. GENEL AYARLAR VE BODY STİLİ */
+/* ------------------------------------ */
+body {
+   font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px 10px;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
+    transition: background-color var(--transition-speed),
+        color var(--transition-speed);
+}
+
+/* Karanlık Mod Genel Geçiş */
+body.dark-mode {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-dark);
+}
+
+/* ------------------------------------ */
+/* 3. ANA KART VE ZAMANLAYICI ALANI */
+/* ------------------------------------ */
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: var(--color-card-bg-light);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    position: relative;
+    z-index: 2;
+}
+
+body.dark-mode #main {
+    background-color: var(--color-card-bg-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 20;
+}
+
+/* Dal */
+.dal {
+    position: relative;
+    width: 15px;
+    height: 250px;
+    background: linear-gradient(to right, var(--color-stem-brown-light), var(--color-stem-brown-dark), var(--color-stem-brown-light));
+    border-radius: 4px;
+    z-index: 15;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+body.dark-mode .dal {
+    background: linear-gradient(to right, #4e342e, #5d4037, #4e342e);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Domates - GERÇEKÇİ GÖRÜNÜM */
+#domates {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    /* Başlangıçta yeşil tonlar (Pomodoro'nun başlangıcı) */
+    background: radial-gradient(circle at 30% 30%,
+            #9ccc65,
+            #689f38 60%,
+            #33691e 90%);
+    clip-path: circle(50% at 50% 50%);
+    transition: all 0.5s ease;
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.6),
+        inset 0 -10px 15px rgba(0, 0, 0, 0.2),
+        0 15px 30px rgba(0, 0, 0, 0.3);
+
+    position: relative;
+    z-index: 25;
+    margin-top: -100px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark-mode #domates {
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.2),
+        inset 0 -10px 15px rgba(0, 0, 0, 0.4),
+        0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Zamanlayıcı Metni */
+#time {
+    position: relative;
+    z-index: 40;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--color-text-light);
+    letter-spacing: -2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1;
+}
+
+body.dark-mode #time {
+    color: var(--color-text-dark);
+}
+
+/* Dakika Etiketi (DOMATES ALTINDA) */
+#duration-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-light);
+    opacity: 0.8;
+    margin-top: 5px;
+    /* Domates ile aralık */
+    margin-bottom: 15px;
+    transition: opacity 0.3s, color var(--transition-speed);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+body.dark-mode #duration-label {
+    color: var(--color-text-dark);
+}
+
+/* ------------------------------------ */
+/* 4. SAP VE YAPRAKLAR */
+/* ------------------------------------ */
+
+/* Çanak Yapraklar */
+.sapi1,
+.sapi2 {
+    position: absolute;
+    top: 170px;
+    width: 30px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--color-leaf-green-dark), var(--color-leaf-green-light));
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 30;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.sapi1 {
+    left: 40%;
+    rotate: 340deg;
+}
+
+.sapi2 {
+    left: 50%;
+    rotate: 20deg;
+}
+
+body.dark-mode .sapi1,
+body.dark-mode .sapi2 {
+    background: linear-gradient(180deg, #44802c, #2b4d1b);
+}
+
+/* Yan Yapraklar */
+.yaprak1,
+.yaprak2 {
+    position: absolute;
+    width: 35px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--color-leaf-green-light), var(--color-leaf-green-dark));
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    transform-origin: 100% 50%;
+    z-index: 14;
+    transition: background var(--transition-speed);
+}
+
+.yaprak1 {
+    top: 50px;
+    left: -5px;
+    transform: rotate(90deg);
+}
+
+.yaprak2 {
+    top: 100px;
+    left: 0px;
+    transform: rotate(260deg);
+}
+
+body.dark-mode .yaprak1,
+body.dark-mode .yaprak2 {
+    background: linear-gradient(135deg, #44802c, #336622);
+}
+
+/* ------------------------------------ */
+/* 5. KONTROL VE BUTON STİLLERİ */
+/* ------------------------------------ */
+
+#controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    z-index: 50;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s;
+    min-width: 100px;
+    display: flex;
+    /* İkon ve metni yan yana hizala */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* İkon ve metin arasındaki boşluk */
+
+    /* Tema Bağımlı (Varsayılan Pomodoro rengi) */
+    background-color: var(--color-primary-soft);
+    color: var(--color-card-bg-light);
+    border-color: var(--color-primary-darker);
+}
+
+button:hover {
+    background-color: var(--color-primary-darker);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Tema Butonu & Zil Sesi */
+#toggle-theme,
+#zil-sesi {
+    position: absolute;
+    top: 20px;
+    z-index: 100;
+}
+
+#toggle-theme {
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border: none;
+    background-color: var(--color-card-bg-light);
+    color: var(--color-text-light);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark-mode #toggle-theme {
+    background-color: var(--color-card-bg-dark);
+    color: var(--color-text-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+#toggle-theme i {
+    font-size: 1.2rem;
+}
+
+#zil-sesi {
+    left: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background-color: var(--color-card-bg-light);
+    color: var(--color-text-light);
+}
+
+body.dark-mode #zil-sesi {
+    background-color: var(--color-card-bg-dark);
+    color: var(--color-text-dark);
+    border-color: #555;
+}
+
+
+/* ------------------------------------ */
+/* 6. ANİMASYONLAR */
+/* ------------------------------------ */
+
+/* Olgunlaşma Animasyonu Keyframes (Pomodoro için - Açık Mod) */
+@keyframes ripen {
+    0% {
+        background: radial-gradient(circle at 30% 30%,
+                #9ccc65,
+                #689f38 60%,
+                #33691e 90%);
+    }
+
+    100% {
+        background: radial-gradient(circle at 30% 30%,
+                #ef9a9a,
+                /* Açık kırmızı parlaklık */
+                #e57373 60%,
+                /* Orta kırmızı */
+                #d32f2f 90%);
+        /* Koyu kırmızı dip */
+    }
+}
+
+/* Olgunlaşma Animasyonu Keyframes (Karanlık Mod) */
+@keyframes dark-ripen {
+    0% {
+        background: radial-gradient(circle at 30% 30%,
+                #5b8d4f,
+                #3d6d31 60%,
+                #1f3e15 90%);
+    }
+
+    100% {
+        background: radial-gradient(circle at 30% 30%,
+                #d55f5f,
+                #b32e2e 60%,
+                #9a2525 90%);
+    }
+}
+
+.ripen-animation {
+    animation-duration: 1500s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-name: ripen;
+}
+
+body.dark-mode .ripen-animation {
+    animation-name: dark-ripen;
+}
+
+/* Domatesin kaybolma animasyonu */
+@keyframes fallToBasket {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(0, 100px) scale(0.8);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(0, 150px) scale(0.6);
+        opacity: 0;
+    }
+}
+
+.falling {
+    animation: fallToBasket 1.5s ease-in-out forwards;
+    pointer-events: none;
+}
